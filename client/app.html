@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="app.css" />
+    <title>Bangalore House Price Predictor</title>
+</head>
+
+<body>
+    <main class="page">
+        <header class="hero">
+            <div class="hero-badge">AI VALUATOR</div>
+            <div class="hero-copy">
+                <h1>Bangalore House Price Prediction</h1>
+            </div>
+        </header>
+
+        <section class="layout">
+            <div class="panel form-panel">
+                <div class="panel-head">
+                </div>
+
+                <form id="priceForm" class="grid-form">
+                    <div class="form-group span-2">
+                        <label for="sqft">Area (Square Feet)</label>
+                        <input type="number" id="sqft" name="total_sqft" placeholder="e.g. 1450" required min="300" />
+                    </div>
+
+                    <div class="form-group option-block">
+                        <div class="option-head">
+                            <label>Number of Bedrooms</label>
+                        </div>
+                        <div class="radio-group">
+                            <label class="radio-label">
+                                <input type="radio" name="bhk" value="1" required />
+                                <span>1</span>
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="bhk" value="2" />
+                                <span>2</span>
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="bhk" value="3" />
+                                <span>3</span>
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="bhk" value="4" />
+                                <span>4</span>
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="bhk" value="5" />
+                                <span>5</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group option-block">
+                        <div class="option-head">
+                            <label>Number of Bathrooms</label>
+                        </div>
+                        <div class="radio-group">
+                            <label class="radio-label">
+                                <input type="radio" name="bath" value="1" required />
+                                <span>1</span>
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="bath" value="2" />
+                                <span>2</span>
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="bath" value="3" />
+                                <span>3</span>
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="bath" value="4" />
+                                <span>4</span>
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="bath" value="5" />
+                                <span>5</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group span-2">
+                        <label for="location">Location</label>
+                        <select id="location" name="location" required>
+                            <option value="">Select a location</option>
+                        </select>
+                    </div>
+
+                    <div class="form-actions span-2">
+                        <button type="submit" class="btn-primary">Estimate Price</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="panel side-panel">
+                <div id="result" class="result-card hidden">
+                    <p class="eyebrow">Estimated Price</p>
+                    <p class="price">₹ <span id="priceValue">0</span> Lakhs</p>
+                    <p class="muted">Based on historical Bengaluru transactions.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
