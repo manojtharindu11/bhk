@@ -5,7 +5,7 @@ import util
 app = Flask(__name__)
 CORS(app)  # Enable CORS for all routes
 
-@app.route("/get-location-names")
+@app.route("/api/get-location-names")
 def get_location_names():
     response = jsonify({
         'locations': util.get_location_names()
@@ -13,7 +13,7 @@ def get_location_names():
     
     return response
 
-@app.route("/predict-home-price", methods=["POST"])
+@app.route("/api/predict-home-price", methods=["POST"])
 def predict_home_price():
     total_sqft = float(request.form["total_sqft"])
     location = request.form["location"]
