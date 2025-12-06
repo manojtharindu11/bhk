@@ -1,5 +1,5 @@
 // API base URL
-const API_URL = "https://bhk.fly.dev/api";
+const API_URL = "https://bhk-backend.fly.dev/api";
 
 // Load locations when page loads
 window.addEventListener("DOMContentLoaded", () => {
