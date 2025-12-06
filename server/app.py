@@ -32,9 +32,5 @@ def predict_home_price():
     
 if __name__ == "__main__":
     print("Starting flask server....")
-    import os
-    print("CWD:", os.getcwd())
-    print("Files:", os.listdir())
-    print("Artifacts:", os.listdir("./artifacts"))
     util.load_saved_artifacts()
-    app.run(debug=True)
+    app.run()

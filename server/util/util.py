@@ -1,10 +1,18 @@
 import json
 import pickle
 import numpy as np
+import os
 
 __locations = None
 __data_columns = None
 __model = None
+
+# Get the directory where this file is located
+__current_dir = os.path.dirname(os.path.abspath(__file__))
+# Parent directory (server/)
+__server_dir = os.path.dirname(__current_dir)
+# Artifacts directory
+__artifacts_dir = os.path.join(__server_dir, "artifacts")
 
 
 def _ensure_artifacts_loaded() -> None:
@@ -48,20 +56,24 @@ def load_saved_artifacts():
     global __data_columns
     global __model
 
+    columns_path = os.path.join(__artifacts_dir, "columns.json")
+    model_path = os.path.join(__artifacts_dir, "bhp_model.pickle")
+
     try:
-        with open("./artifacts/columns.json", "r", encoding="utf-8") as f:
+        with open(columns_path, "r", encoding="utf-8") as f:
             __data_columns = json.load(f)["data_columns"]
             __locations = __data_columns[3:]
+            print(f"Loaded {len(__locations)} locations")
     except FileNotFoundError as exc:
-        raise FileNotFoundError("columns.json not found at ./artifacts/columns.json") from exc
+        raise FileNotFoundError(f"columns.json not found at {columns_path}") from exc
     except (KeyError, json.JSONDecodeError) as exc:
         raise RuntimeError("Invalid columns.json format.") from exc
 
     try:
-        with open("./artifacts/bhp_model.pickle", "rb") as f:
+        with open(model_path, "rb") as f:
             __model = pickle.load(f)
     except FileNotFoundError as exc:
-        raise FileNotFoundError("bhp_model.pickle not found at ./artifacts/bhp_model.pickle") from exc
+        raise FileNotFoundError(f"bhp_model.pickle not found at {model_path}") from exc
     except Exception as exc:
         raise RuntimeError(f"Loading model failed: {exc}") from exc
 
