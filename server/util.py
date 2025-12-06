@@ -31,11 +31,11 @@ def load_saved_artifacts():
     global __data_columns
     global __model
     
-    with open("../model/output/columns.json", 'r') as f:
+    with open("artifacts/columns.json", 'r') as f:
         __data_columns = json.load(f)["data_columns"]
         __locations = __data_columns[3:]
         
-    with open("../model/output/bhp_model.pickle", 'rb') as f:
+    with open("artifacts/bhp_model.pickle", 'rb') as f:
         __model = pickle.load(f)
         
     print("Loading the artifacts is done.")  
