@@ -5,6 +5,10 @@ import util
 app = Flask(__name__)
 CORS(app)  # Enable CORS for all routes
 
+@app.route("/")
+def health_check():
+    return "Server is running..."
+
 @app.route("/api/get-location-names")
 def get_location_names():
     response = jsonify({
