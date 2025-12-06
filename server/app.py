@@ -5,6 +5,15 @@ import util.util as util
 app = Flask(__name__)
 CORS(app)  # Enable CORS for all routes
 
+# Load artifacts when the app starts (works with both dev and production servers)
+print("Starting flask server....")
+try:
+    util.load_saved_artifacts()
+    print("[SUCCESS] Artifacts loaded successfully")
+except Exception as e:
+    print(f"[ERROR] Failed to load artifacts: {e}")
+    raise
+
 @app.route("/")
 def health_check():
     return "Server is running..."
@@ -31,6 +40,4 @@ def predict_home_price():
     return response
     
 if __name__ == "__main__":
-    print("Starting flask server....")
-    util.load_saved_artifacts()
     app.run()
